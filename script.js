@@ -23,5 +23,5 @@ const generateRandomDice = () => Math.floor(Math.random() * 6 + 1);
 
 btnRoll.addEventListener('click', function () {
   const diceNumber = generateRandomDice();
-  console.log(diceNumber);
+  dice.src = `./images/dice-${diceNumber}.png`;
 });
