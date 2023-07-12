@@ -1,7 +1,8 @@
 'use strict';
 
 //Capturing all the elements in a variable
-let currentScore = 0;
+let score = 0;
+let activePlayer = 0;
 
 const score0 = document.getElementById('score--0');
 const score1 = document.getElementById('score--1');
@@ -20,9 +21,9 @@ const prepareGameStart = function () {
 
 const generateRandomDice = () => Math.floor(Math.random() * 6 + 1);
 
-//Roll button click event
+const switchPlayer = function () {};
 
-prepareGameStart();
+prepareGameStart(); //Invoking function to remove scores
 
 btnRoll.addEventListener('click', function () {
   const diceNumber = generateRandomDice();
@@ -31,8 +32,9 @@ btnRoll.addEventListener('click', function () {
   dice.src = `./images/dice-${diceNumber}.png`;
 
   if (diceNumber !== 1) {
-    currentScore += diceNumber;
-    currentScore0.textContent = currentScore;
+    score += diceNumber;
+    document.getElementById(`current--${activePlayer}`).textContent = score;
   } else {
+    activePlayer = activePlayer === 0 ? 1 : 0;
   }
 });
