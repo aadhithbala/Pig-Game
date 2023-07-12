@@ -3,8 +3,10 @@
 //Capturing all the elements in a variable
 let currentScore = 0;
 let activePlayer = 0;
+let playing = true;
 const score = [0, 0];
 
+const buttons = document.querySelectorAll('.btn');
 const score0 = document.getElementById('score--0');
 const score1 = document.getElementById('score--1');
 const dice = document.querySelector('.dice');
@@ -34,31 +36,40 @@ const switchPlayer = function () {
 prepareGameStart(); //Invoking function to remove scores
 
 btnRoll.addEventListener('click', function () {
-  const diceNumber = generateRandomDice();
+  if (playing) {
+    const diceNumber = generateRandomDice();
 
-  dice.classList.remove('hidden');
-  dice.src = `./images/dice-${diceNumber}.png`;
+    dice.classList.remove('hidden');
+    dice.src = `./images/dice-${diceNumber}.png`;
 
-  if (diceNumber !== 1) {
-    currentScore += diceNumber;
-    document.getElementById(`current--${activePlayer}`).textContent =
-      currentScore;
-  } else {
-    switchPlayer();
+    if (diceNumber !== 1) {
+      currentScore += diceNumber;
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
+    } else {
+      switchPlayer();
+    }
   }
 });
 
 btnHold.addEventListener('click', function () {
-  //Add current players score to current players total score
-  score[activePlayer] += currentScore;
-  document.getElementById(`score--${activePlayer}`).textContent =
-    score[activePlayer];
-  //Check if total score is >= 100 if true declare winner else switch player
-  if (score[activePlayer] >= 100) {
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.add('player--winner');
-  } else {
-    switchPlayer();
+  if (playing) {
+    //Add current players score to current players total score
+    score[activePlayer] += currentScore;
+
+    document.getElementById(`score--${activePlayer}`).textContent =
+      score[activePlayer];
+
+    //Check if total score is >= 100 if true declare winner else switch player
+    if (score[activePlayer] >= 20) {
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      playing = false;
+      btnHold.classList.add('hidden');
+      btnRoll.classList.add('hidden');
+    } else {
+      switchPlayer();
+    }
   }
 });
