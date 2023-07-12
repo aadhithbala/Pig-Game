@@ -29,4 +29,10 @@ btnRoll.addEventListener('click', function () {
 
   dice.classList.remove('hidden');
   dice.src = `./images/dice-${diceNumber}.png`;
+
+  if (diceNumber !== 1) {
+    currentScore += diceNumber;
+    currentScore0.textContent = currentScore;
+  } else {
+  }
 });
