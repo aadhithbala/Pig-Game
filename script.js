@@ -3,6 +3,7 @@
 //Capturing all the elements in a variable
 let currentScore = 0;
 let activePlayer = 0;
+const score = [0, 0];
 
 const score0 = document.getElementById('score--0');
 const score1 = document.getElementById('score--1');
@@ -42,6 +43,21 @@ btnRoll.addEventListener('click', function () {
     currentScore += diceNumber;
     document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
+  } else {
+    switchPlayer();
+  }
+});
+
+btnHold.addEventListener('click', function () {
+  //Add current players score to current players total score
+  score[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    score[activePlayer];
+  //Check if total score is >= 100 if true declare winner else switch player
+  if (score[activePlayer] >= 100) {
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
   } else {
     switchPlayer();
   }
