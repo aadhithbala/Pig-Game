@@ -1,6 +1,7 @@
 'use strict';
 
 //Capturing all the elements in a variable
+let currentScore = 0;
 
 const score0 = document.getElementById('score--0');
 const score1 = document.getElementById('score--1');
@@ -21,7 +22,11 @@ const generateRandomDice = () => Math.floor(Math.random() * 6 + 1);
 
 //Roll button click event
 
+prepareGameStart();
+
 btnRoll.addEventListener('click', function () {
   const diceNumber = generateRandomDice();
+
+  dice.classList.remove('hidden');
   dice.src = `./images/dice-${diceNumber}.png`;
 });
