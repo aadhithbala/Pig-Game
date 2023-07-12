@@ -18,3 +18,10 @@ const prepareGameStart = function () {
 };
 
 const generateRandomDice = () => Math.floor(Math.random() * 6 + 1);
+
+//Roll button click event
+
+btnRoll.addEventListener('click', function () {
+  const diceNumber = generateRandomDice();
+  console.log(diceNumber);
+});
