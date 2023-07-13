@@ -32,9 +32,14 @@ const prepareGameStart = function () {
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--winner');
   document.getElementById(`current--${activePlayer}`).textContent = 0;
-
+  console.log(activePlayer);
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.remove('player--active');
   activePlayer = 0;
-  toggleActivePlayer();
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.add('player--active');
 };
 
 const generateRandomDice = () => Math.floor(Math.random() * 6 + 1);
