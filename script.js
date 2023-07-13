@@ -15,6 +15,11 @@ const btnHold = document.querySelector('.btn--hold');
 const player0 = document.querySelector('.player--0');
 const player1 = document.querySelector('.player--1');
 
+const toggleActivePlayer = function () {
+  player0.classList.toggle('player--active');
+  player1.classList.toggle('player--active');
+};
+
 const prepareGameStart = function () {
   // Refactor this whole mess
   score = [0, 0];
@@ -29,8 +34,7 @@ const prepareGameStart = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
 
   activePlayer = 0;
-  player0.classList.toggle('player--active');
-  player1.classList.toggle('player--active');
+  toggleActivePlayer();
 };
 
 const generateRandomDice = () => Math.floor(Math.random() * 6 + 1);
@@ -40,8 +44,7 @@ const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent =
     currentScore;
   activePlayer = activePlayer === 0 ? 1 : 0;
-  player0.classList.toggle('player--active');
-  player1.classList.toggle('player--active');
+  toggleActivePlayer();
 };
 
 btnRoll.addEventListener('click', function () {
