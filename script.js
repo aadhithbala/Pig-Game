@@ -31,8 +31,6 @@ const prepareGameStart = function () {
   activePlayer = 0;
   player0.classList.toggle('player--active');
   player1.classList.toggle('player--active');
-  btnHold.classList.remove('hidden');
-  btnRoll.classList.remove('hidden');
 };
 
 const generateRandomDice = () => Math.floor(Math.random() * 6 + 1);
@@ -45,7 +43,6 @@ const switchPlayer = function () {
   player0.classList.toggle('player--active');
   player1.classList.toggle('player--active');
 };
-//Invoking function to remove scores
 
 btnRoll.addEventListener('click', function () {
   if (playing) {
@@ -73,13 +70,12 @@ btnHold.addEventListener('click', function () {
       score[activePlayer];
 
     //Check if total score is >= 100 if true declare winner else switch player
-    if (score[activePlayer] >= 100) {
+    if (score[activePlayer] >= 10) {
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
       playing = false;
-      btnHold.classList.add('hidden');
-      btnRoll.classList.add('hidden');
+      dice.classList.add('hidden');
     } else {
       switchPlayer();
     }
