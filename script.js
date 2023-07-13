@@ -32,7 +32,6 @@ const prepareGameStart = function () {
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--winner');
   document.getElementById(`current--${activePlayer}`).textContent = 0;
-  console.log(activePlayer);
   document
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--active');
